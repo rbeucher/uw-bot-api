@@ -1,76 +1,7 @@
-Here are some things you can ask me to do:
+Here are some things you can ask me to do (I'm kind of lazy for now):
 
 ```
-# List all of Whedon's capabilities
-@whedon commands
-
-# Assign a GitHub user as the sole reviewer of this submission
-@whedon assign @username as reviewer
-
-# Add a GitHub user to the reviewers of this submission
-@whedon add @username as reviewer
-
-# Re-invite a reviewer (if they can't update checklists)
-@whedon re-invite @username as reviewer
-
-# Remove a GitHub user from the reviewers of this submission
-@whedon remove @username as reviewer
-
-# List of editor GitHub usernames
-@whedon list editors
-
-# List of reviewers together with programming language preferences and domain expertise
-@whedon list reviewers
-
-# Change editorial assignment
-@whedon assign @username as editor
-
-# Set the software archive DOI at the top of the issue e.g.
-@whedon set 10.0000/zenodo.00000 as archive
-
-# Set the software version at the top of the issue e.g.
-@whedon set v1.0.1 as version
-
-# Open the review issue
-@whedon start review
-
-EDITORIAL TASKS
-
-# All commands can be run on a non-default branch, to do this pass a custom 
-# branch name by following the command with `from branch custom-branch-name`.
-# For example:
-
-# Compile the paper
-@whedon generate pdf
-
-# Compile the paper from alternative branch
-@whedon generate pdf from branch custom-branch-name
-
-# Remind an author or reviewer to return to a review after a
-# certain period of time (supported units days and weeks)
-@whedon remind @reviewer in 2 weeks
-
-# Ask Whedon to do a dry run of accepting the paper and depositing with Crossref
-@whedon recommend-accept
-
-# Ask Whedon to check the references for missing DOIs
-@whedon check references
-
-# Ask Whedon to check repository statistics for the submitted software
-@whedon check repository
-
-EiC TASKS
-
-# Invite an editor to edit a submission (sending them an email)
-@whedon invite @editor as editor
-
-# Reject a paper
-@whedon reject
-
-# Withdraw a paper
-@whedon withdraw
-
-# Ask Whedon to actually accept the paper and deposit with Crossref
-@whedon accept deposit=true
+# List all of UW-bot's capabilities
+@uw-bot commands
 
 ```

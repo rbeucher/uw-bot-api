@@ -95,9 +95,9 @@ class WhedonApi < Sinatra::Base
       close_issue(@nwo, @issue_id)
       halt 
     end
-    repo_detect(nil)
-    check_references(nil)
-    process_pdf(nil)
+    #repo_detect(nil)
+    #check_references(nil)
+    #process_pdf(nil)
   end
 
   # When an issue is closed we want to encourage authors to add the JOSS status
@@ -129,13 +129,13 @@ class WhedonApi < Sinatra::Base
   # One giant case statement to decide how to handle an incoming message...
   def robawt_respond
     case @message
-    when /\A@whedon commands/i
+    when /\A@uw-bot commands/i
       if @config.editors.include?(@sender)
         respond erb :commands
       else
         respond erb :commands_public
       end
-    when /\A@whedon assign (.*) as reviewer/i
+    when /\A@uw-bot assign (.*) as reviewer/i
       check_editor
       if editor?
         assign_reviewer($1)
@@ -143,7 +143,7 @@ class WhedonApi < Sinatra::Base
       else
         respond "You need to assign an editor first."
       end
-    when /\A@whedon add (.*) as reviewer/i
+    when /\A@uw-bot add (.*) as reviewer/i
       check_editor
       if editor?
         add_reviewer($1)
@@ -151,27 +151,27 @@ class WhedonApi < Sinatra::Base
       else
         respond "You need to assign an editor first."
       end
-    when /\A@whedon remove (.*) as reviewer/i
+    when /\A@uw-bot remove (.*) as reviewer/i
       check_editor
       remove_reviewer($1)
       respond "OK, #{$1} is no longer a reviewer"
-    when /\A@whedon assign (.*) as editor/i
+    when /\A@uw-bot assign (.*) as editor/i
       check_editor
       new_editor = assign_editor($1)
       respond "OK, the editor is @#{new_editor}"
-    when /\A@whedon invite (.*) as editor/i
+    when /\A@uw-bot invite (.*) as editor/i
       check_eic
       invite_editor($1)
-    when /\A@whedon re-invite (.*) as reviewer/i
+    when /\A@uw-bot re-invite (.*) as reviewer/i
       check_editor
       invite_reviewer($1)
-    when /\A@whedon set (.*) as archive/
+    when /\A@uw-bot set (.*) as archive/
       check_editor
       assign_archive($1)
-    when /\A@whedon set (.*) as version/
+    when /\A@uw-bot set (.*) as version/
       check_editor
       assign_version($1)
-    when /\A@whedon start review/i
+    when /\A@uw-bot start review/i
       check_editor
       if editor && reviewers.any?
         review_issue_id = start_review
@@ -181,56 +181,56 @@ class WhedonApi < Sinatra::Base
         respond erb :missing_editor_reviewer
         halt
       end
-    when /\A@whedon list editors/i
+    when /\A@uw-bot list editors/i
       respond erb :editors, :locals => { :editors => @config.editors }
-    when /\A@whedon list reviewers/i
+    when /\A@uw-bot list reviewers/i
       respond all_reviewers
-    when /\A@whedon generate pdf from branch (.\S*)/
+    when /\A@uw-bot generate pdf from branch (.\S*)/
       process_pdf($1)
-    when /\A@whedon generate pdf/i
+    when /\A@uw-bot generate pdf/i
       process_pdf(nil)
-    when /\A@whedon accept deposit=true from branch (.\S*)/i
+    when /\A@uw-bot accept deposit=true from branch (.\S*)/i
       check_eic
       deposit(dry_run=false, $1)
-    when /\A@whedon accept deposit=true/i
+    when /\A@uw-bot accept deposit=true/i
       check_eic
       deposit(dry_run=false)
-    when /\A@whedon recommend-accept from branch (.\S*)/i
+    when /\A@uw-bot recommend-accept from branch (.\S*)/i
       check_editor
       deposit(dry_run=true, $1)
-    when /\A@whedon recommend-accept/i
+    when /\A@uw-bot recommend-accept/i
       check_editor
       deposit(dry_run=true)
-    when /\A@whedon accept/i
+    when /\A@uw-bot accept/i
       check_editor
       if editor 
-        respond "To recommend a paper to be accepted use `@whedon recommend-accept`"
+        respond "To recommend a paper to be accepted use `@uw-bot recommend-accept`"
       end
-    when /\A@whedon reject/i
+    when /\A@uw-bot reject/i
       check_eic
       reject_paper
-    when /\A@whedon withdraw/i
+    when /\A@uw-bot withdraw/i
       check_eic
       withdraw_paper
-    when /\A@whedon check references from branch (.\S*)/
+    when /\A@uw-bot check references from branch (.\S*)/
       check_references($1)
-    when /\A@whedon check references/i
+    when /\A@uw-bot check references/i
       check_references(nil)
-    when /\A@whedon check repository from branch (.\S*)/i
+    when /\A@uw-bot check repository from branch (.\S*)/i
       repo_detect($1)
-    when /\A@whedon check repository/i
+    when /\A@uw-bot check repository/i
       repo_detect(nil)
-    # Detect strings like '@whedon remind @arfon in 2 weeks'
-    when /\A@whedon remind (.*) in (.*) (.*)/i
+    # Detect strings like '@uw-bot remind @arfon in 2 weeks'
+    when /\A@uw-bot remind (.*) in (.*) (.*)/i
       check_editor
       schedule_reminder($1, $2, $3)
-    when /\A@whedon query scope/
+    when /\A@uw-bot query scope/
       check_editor
       label_issue(@nwo, @issue_id, ['query-scope'])
       respond "Submission flagged for editorial review."
     # We don't understand the command so say as much...
-    when /\A@whedon/i
-      respond erb :sorry unless @sender == "whedon"
+    when /\A@uw-bot/i
+      respond erb :sorry unless @sender == "uw-bot"
     end
   end
 

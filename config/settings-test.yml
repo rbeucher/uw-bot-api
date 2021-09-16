@@ -1,9 +1,9 @@
 journals:
-  - openjournals/joss-reviews-testing:
-      editor_team_id: 2009411
+  - underworld-community/uwc-reviews-testing:
+      editor_team_id: 3262530
       eics:
-        - arfon
-      papers: openjournals/joss-papers-testing
+        - rbeucher
+      papers: underworld-community/uwc-models-testing
       reviewers: https://bit.ly/joss-reviewers
       reviewers_signup: http://joss.theoj.org/reviewer-signup.html
       site_host: http://joss.theoj.org

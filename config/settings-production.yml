@@ -1,23 +1,20 @@
 journals:
-  - openjournals/joss-reviews:
-      editor_team_id: 2009411
+  - underworld-community/uwc-reviews:
+      editor_team_id: 3262530
       eics:
         - rbeucher
       eic_team_name: underworld-community/editors
       papers_repo: underworld-community/uwc-models
-      reviewers: https://bit.ly/joss-reviewers
-      reviewers_signup: https://joss.theoj.org/reviewer-signup.html
-      site_host: https://joss.theoj.org
-      doi_prefix: "10.21105"
-      journal_alias: joss
-      journal_launch_date: '2016-05-05'
-      journal_issn: '2475-9066'
-      site_name: Journal of Open Source Software
-      donate_url: https://numfocus.org/donate-to-joss
+      reviewers: "https://bit.ly/2XC2Z9e"
+      reviewers_signup: https://underworld-community.herokuapp.com/reviewer-signup.html
+      site_host: https://underworld-community.herokuapp.com
+      doi_prefix: "10.6666"
+      journal_alias: uwc
+      journal_launch_date: '2021-10-01'
+      journal_issn: '0000-0000'
+      site_name: Underworld Community
       site_api_key: <%= ENV['UWC_API_KEY'] %>
-      crossref_username: <%= ENV['CROSSREF_USERNAME'] %>
-      crossref_password: <%= ENV['CROSSREF_PASSWORD'] %>
-      twitter_consumer_key: <%= ENV['JOSS_TWITTER_CONSUMER_KEY'] %>
-      twitter_consumer_secret: <%= ENV['JOSS_TWITTER_CONSUMER_SECRET'] %>
-      twitter_access_token: <%= ENV['JOSS_TWITTER_ACCESS_TOKEN'] %>
-      twitter_access_token_secret: <%= ENV['JOSS_TWITTER_ACCESS_TOKEN_SECRET'] %>
+      twitter_consumer_key: <%= ENV['UWC_TWITTER_CONSUMER_KEY'] %>
+      twitter_consumer_secret: <%= ENV['UWC_TWITTER_CONSUMER_SECRET'] %>
+      twitter_access_token: <%= ENV['UWC_TWITTER_ACCESS_TOKEN'] %>
+      twitter_access_token_secret: <%= ENV['UWC_TWITTER_ACCESS_TOKEN_SECRET'] %>

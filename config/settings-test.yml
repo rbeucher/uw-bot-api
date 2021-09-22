@@ -1,15 +1,14 @@
 journals:
-  - underworld-community/uwc-reviews-testing:
+  - underworld-community/uwc-reviews:
       editor_team_id: 3262530
       eics:
         - rbeucher
       papers: underworld-community/uwc-models-testing
-      reviewers: https://bit.ly/joss-reviewers
-      reviewers_signup: http://joss.theoj.org/reviewer-signup.html
-      site_host: http://joss.theoj.org
-      doi_prefix: "10.21105"
-      journal_alias: joss
-      journal_launch_date: '2016-05-05'
-      site_name: Journal of Open Source Software
-      donate_url: https://www.flipcause.com/secure/cause_pdetails/Mjk3Nzk=
+      reviewers: "https://bit.ly/2XC2Z9e"
+      reviewers_signup: https://underworld-community.herokuapp.com/reviewer-signup.html
+      site_host: https://underworld-community.herokuapp.com/
+      doi_prefix: "10.66666"
+      journal_alias: uwc
+      journal_launch_date: '2021-10-01'
+      site_name: Underworld Community
       site_api_key: <%= ENV['UWC_API_KEY'] %>

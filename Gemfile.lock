@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/openjournals/whedon.git
+  remote: https://github.com/underworld-community/uw-bot.git
   revision: c5c16aedb3d6b4377181e859316ed70f1ac0a0b7
-  ref: c5c16aedb3d6b4377181e859316ed70f1ac0a0b7
+  branch: master
   specs:
     whedon (0.1.0)
       bibtex-ruby

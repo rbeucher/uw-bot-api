@@ -1,4 +1,4 @@
 $stdout.sync = true
 
-require './uw-bot_api'
+require './whedon_api'
 run WhedonApi

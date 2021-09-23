@@ -9,13 +9,13 @@ require 'octokit'
 require 'rest-client'
 require 'securerandom'
 require 'sinatra/config_file'
-require 'uwbot'
+require 'whedon'
 require 'yaml'
 require 'pry'
 
 include GitHub
 
-class UWBotApi < Sinatra::Base
+class WhedonApi < Sinatra::Base
   register Sinatra::ConfigFile
 
   set :views, Proc.new { File.join(root, "responses") }
@@ -252,7 +252,7 @@ class UWBotApi < Sinatra::Base
 
     if response.code == 204
       label_issue(@nwo, @issue_id, ['rejected'])
-      respond "Paper rejected."
+      respond "Model rejected."
       close_issue(@nwo, @issue_id)
     else
       respond "There was a problem rejecting the paper."
@@ -265,7 +265,7 @@ class UWBotApi < Sinatra::Base
 
     if response.code == 204
       label_issue(@nwo, @issue_id, ['withdrawn'])
-      respond "Paper withdrawn."
+      respond "Model withdrawn."
       close_issue(@nwo, @issue_id)
     else
       respond "There was a problem withdrawing the paper."
@@ -303,7 +303,7 @@ class UWBotApi < Sinatra::Base
     Chronic.parse("in #{size} #{unit}")
   end
 
-  # How UW-bot talks
+  # How Whedon talks
   def respond(comment, nwo=nil, issue_id=nil)
     nwo ||= @nwo
     issue_id ||= @issue_id
@@ -475,8 +475,8 @@ class UWBotApi < Sinatra::Base
     RestClient.post(url, data.to_json, {:Authorization => "token #{ENV['GH_TOKEN']}"})
   end
 
-  # This method is called when an editor says: '@uw-bot start review'.
-  # At this point, UW-bot talks to the UWC application which creates
+  # This method is called when an editor says: '@whedon start review'.
+  # At this point, Whedon talks to the JOSS/JOSE application which creates
   # the actual review issue and responds with the serialized paper which
   # includes the 'review_issue_id' which is posted back into the PRE-REVIEW
   def start_review

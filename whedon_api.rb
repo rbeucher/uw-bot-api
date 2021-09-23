@@ -95,8 +95,8 @@ class WhedonApi < Sinatra::Base
       close_issue(@nwo, @issue_id)
       halt 
     end
-    #repo_detect(nil)
-    #check_references(nil)
+    repo_detect(nil)
+    check_references(nil)
     #process_pdf(nil)
   end
 

@@ -2,7 +2,7 @@ class PaperPreviewWorker
   require 'cloudinary'
   require 'sidekiq'
   require 'sidekiq_status'
-  require 'uw-bot'
+  require 'uwbot'
 
   include Sidekiq::Worker
   include SidekiqStatus::Worker

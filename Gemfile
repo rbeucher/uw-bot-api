@@ -16,7 +16,7 @@ gem 'sinatra-contrib', '2.0.2'
 gem 'twitter'
 gem 'unicorn', '5.3.1'
 gem 'pry-byebug'
-gem 'uw-bot', :git => 'https://github.com/underworld-community/uw-bot.git', :branch => 'master'
+gem 'uwbot', :git => 'https://github.com/underworld-community/uw-bot.git', :branch => 'master'
 
 group :test do
   gem 'rack-test'

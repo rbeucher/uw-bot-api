@@ -9,7 +9,7 @@ require 'octokit'
 require 'rest-client'
 require 'securerandom'
 require 'sinatra/config_file'
-require 'uw-bot'
+require 'uwbot'
 require 'yaml'
 require 'pry'
 

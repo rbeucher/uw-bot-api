@@ -22,7 +22,7 @@
     "HEROKU_CLI_TOKEN": {
       "description": "The API token of the account used to run restart.sh"
     },
-    "JOSS_API_KEY": {
+    "UWC_API_KEY": {
       "description": "The API key for the JOSS site API"
     },
     "JOSE_API_KEY": {
@@ -31,7 +31,7 @@
     "JCON_API_KEY": {
       "description": "The API key for the JCON site API"
     },
-    "JOSS_API_KEY_TESTING": {
+    "UWC_API_KEY_TESTING": {
       "description": "Test API key"
     },
     "GH_TOKEN": {

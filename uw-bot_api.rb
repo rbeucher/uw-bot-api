@@ -9,13 +9,13 @@ require 'octokit'
 require 'rest-client'
 require 'securerandom'
 require 'sinatra/config_file'
-require 'whedon'
+require 'uw-bot'
 require 'yaml'
 require 'pry'
 
 include GitHub
 
-class WhedonApi < Sinatra::Base
+class UWBotApi < Sinatra::Base
   register Sinatra::ConfigFile
 
   set :views, Proc.new { File.join(root, "responses") }
@@ -236,7 +236,7 @@ class WhedonApi < Sinatra::Base
 
   def invite_editor(editor)
     editor_handle = editor.gsub(/^\@/, "").strip
-    url = "#{@config.site_host}/papers/api_editor_invite?id=#{@issue_id}&editor=#{editor_handle}&secret=#{@config.site_api_key}"
+    url = "#{@config.site_host}/models/api_editor_invite?id=#{@issue_id}&editor=#{editor_handle}&secret=#{@config.site_api_key}"
     response = RestClient.post(url, "")
 
     if response.code == 204
@@ -247,7 +247,7 @@ class WhedonApi < Sinatra::Base
   end
 
   def reject_paper
-    url = "#{@config.site_host}/papers/api_reject?id=#{@issue_id}&secret=#{@config.site_api_key}"
+    url = "#{@config.site_host}/models/api_reject?id=#{@issue_id}&secret=#{@config.site_api_key}"
     response = RestClient.post(url, "")
 
     if response.code == 204
@@ -260,7 +260,7 @@ class WhedonApi < Sinatra::Base
   end
 
   def withdraw_paper
-    url = "#{@config.site_host}/papers/api_withdraw?id=#{@issue_id}&secret=#{@config.site_api_key}"
+    url = "#{@config.site_host}/models/api_withdraw?id=#{@issue_id}&secret=#{@config.site_api_key}"
     response = RestClient.post(url, "")
 
     if response.code == 204
@@ -303,7 +303,7 @@ class WhedonApi < Sinatra::Base
     Chronic.parse("in #{size} #{unit}")
   end
 
-  # How Whedon talks
+  # How UW-bot talks
   def respond(comment, nwo=nil, issue_id=nil)
     nwo ||= @nwo
     issue_id ||= @issue_id
@@ -407,7 +407,7 @@ class WhedonApi < Sinatra::Base
     # This line updates the GitHub issue with the new editor
     github_client.update_issue(@nwo, @issue_id, issue.title, new_body, :assignees => [])
 
-    url = "#{@config.site_host}/papers/api_assign_editor?id=#{@issue_id}&editor=#{new_editor}&secret=#{@config.site_api_key}"
+    url = "#{@config.site_host}/models/api_assign_editor?id=#{@issue_id}&editor=#{new_editor}&secret=#{@config.site_api_key}"
     response = RestClient.post(url, "")
 
     reviewer_logins = reviewers.map { |reviewer_name| reviewer_name.sub(/^@/, "") }
@@ -475,8 +475,8 @@ class WhedonApi < Sinatra::Base
     RestClient.post(url, data.to_json, {:Authorization => "token #{ENV['GH_TOKEN']}"})
   end
 
-  # This method is called when an editor says: '@whedon start review'.
-  # At this point, Whedon talks to the JOSS/JOSE application which creates
+  # This method is called when an editor says: '@uw-bot start review'.
+  # At this point, UW-bot talks to the UWC application which creates
   # the actual review issue and responds with the serialized paper which
   # includes the 'review_issue_id' which is posted back into the PRE-REVIEW
   def start_review
@@ -497,7 +497,7 @@ class WhedonApi < Sinatra::Base
     end
 
     reviewer_logins = reviewers.map { |reviewer_name| reviewer_name.sub(/^@/, "") }
-    url = "#{@config.site_host}/papers/api_start_review?id=#{@issue_id}&editor=#{editor}&reviewers=#{reviewer_logins.join(',')}&secret=#{@config.site_api_key}"
+    url = "#{@config.site_host}/models/api_start_review?id=#{@issue_id}&editor=#{editor}&reviewers=#{reviewer_logins.join(',')}&secret=#{@config.site_api_key}"
     # TODO let's do some error handling here please
     response = RestClient.post(url, "")
     paper = JSON.parse(response)

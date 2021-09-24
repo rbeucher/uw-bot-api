@@ -346,6 +346,7 @@ class RepoWorker
   include GitHub
 
   def perform(nwo, issue_id, config, custom_branch=nil)
+    puts config
     config = OpenStruct.new(config)
     set_env(nwo, issue_id, config)
 
